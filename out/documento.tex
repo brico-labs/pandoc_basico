@@ -1,0 +1,333 @@
+\documentclass[12pt,spanish,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+    \setmainfont[]{Source Sans Pro}
+    \setmonofont[Mapping=tex-ansi]{Source Code Pro}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[a4paper]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Pandoc Cheatsheet},
+            pdfauthor={Sergio Alvariño copiado descaradamente de David Sanson},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=spanish]{babel}
+\else
+  \usepackage{polyglossia}
+  \setmainlanguage[]{spanish}
+\fi
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\title{Pandoc Cheatsheet\footnote{Cobbled together from
+  \url{http://daringfireball.net/projects/markdown/syntax} and
+  \url{http://johnmacfarlane.net/pandoc/README.html}.}}
+\author{Sergio Alvariño copiado descaradamente de David Sanson}
+\date{Abril 2016}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+Solo para referencia rápida y personal.
+
+\section{Backslash Escapes}\label{backslash-escapes}
+
+Salvo que estemos dentro de un bloque de código o de ``código en
+linea'', \textbf{cualquier carácter de puntuación o espacio} precedido
+de contrabarra se tratará de forma literal, incluso si ese carácter
+normalmente indique algún formato.
+
+\section{Bloque de título}\label{bloque-de-tuxedtulo}
+
+Es una forma rápida de indicar el título el autor o autores y la fecha.
+
+\begin{verbatim}
+% título
+% autor(es) (separados por :)
+% fecha
+\end{verbatim}
+
+Un bloque de título mucho más completo:
+
+\begin{verbatim}
+---
+title: Título
+author:
+- Autor Uno <autor.uno@gmail.com>
+- Otro autor <otroautor@gmail.com>
+tags: [nothing, nothingness]
+date: enero-2016
+lang: es-ES
+abstract: |
+  Este es el resumen.
+
+  Con dos párrafos.
+...
+\end{verbatim}
+
+\section{Incrustar TeX y HTML}\label{incrustar-tex-y-html}
+
+\begin{itemize}
+\tightlist
+\item
+  Los comandos TeX se pasan de forma transparente al Markdown, y afectan
+  solo a la salida de LaTeX y ConTeXt; en el resto de casos se borran
+\item
+  El código HTML pasará a la salida sin cambios, pero el Markdown dentro
+  de los bloques HTML se procesa como Markdown
+\end{itemize}
+
+\section{Párrafos y retornos de
+línea}\label{puxe1rrafos-y-retornos-de-luxednea}
+
+\begin{itemize}
+\tightlist
+\item
+  Un párrafo es una o más líneas de texto separadas por una linea en
+  blanco del resto
+\item
+  Una línea que termina con dos espacios, o una línea que termina con un
+  fin de linea escapado (contrabarra seguida de retorno de linea) indica
+  un cambio de linea manual
+\end{itemize}
+
+\section{Itálica, negrita, superescrito, subesctrito,
+tachado}\label{ituxe1lica-negrita-superescrito-subesctrito-tachado}
+
+\begin{verbatim}
+*Itálica* and **negrita** se indican con asteriscos.
+
+Para  ~~tachar~~ texto usa tildes dobles.
+
+Superscrito se indica así: 2^ndo^.
+
+Subescrito con tildes simples, así: H~2~O.
+
+Los espacios en el superescrito y el subescrito tienen que ir escapados,
+p.ej., H~esto\ es \ un\ subescrito~.
+\end{verbatim}
+
+\section{TeX matématico o código incrustado en
+linea}\label{tex-matuxe9matico-o-cuxf3digo-incrustado-en-linea}
+
+\begin{verbatim}
+El TeX matemático va entre signos$: $2 + 2$.
+
+El código en linea va entre comillas invertidas: `echo 'hello'`
+\end{verbatim}
+
+\section{Enlaces e imágenes}\label{enlaces-e-imuxe1genes}
+
+\begin{verbatim}
+<http://example.com>
+<foo@bar.com>
+[inline link](http://example.com "Title")
+![inline image](/path/to/image, "alt text")
+
+[reference link][id]
+[implicit reference link][]
+![reference image][id2]
+
+[id]: http://example.com "Title"
+[implicit reference link]: http://example.com
+[id2]: /path/to/image "alt text"
+\end{verbatim}
+
+\section{Notas al pie de página}\label{notas-al-pie-de-puxe1gina}
+
+\begin{verbatim}
+Las notas en linea son como esta.^[Nótese que las notas en linea no pueden tener más de un párrafo.] Las notas de referencia son como esta.[^id]
+
+[^id]:  Las notas de referencia pueden contener varios párrafos.
+
+    Los parámetros a continuación deben estar identados.
+\end{verbatim}
+
+\section{Citas}\label{citas}
+
+\begin{verbatim}
+Blah blah [see @doe99, pp. 33-35; also @smith04, ch. 1].
+
+Blah blah [@doe99, pp. 33-35, 38-39 and *passim*].
+
+Blah blah [@smith04; @doe99].
+
+Smith says blah [-@smith04].
+
+@smith04 says blah.
+
+@smith04 [p. 33] says blah.
+\end{verbatim}
+
+\section{Encabezados}\label{encabezados}
+
+\begin{verbatim}
+Encabezado 1
+========
+
+Encabezado 2
+--------
+
+# Encabezado 1 #
+
+## Encabezado 2 ##
+\end{verbatim}
+
+Las almohadillas de cierre \# son opcionales. Es necesario añadir una
+línea en blanco antes y después de cada cabecera.
+
+\section{Listas}\label{listas}
+
+\subsection{Listas Ordenadas}\label{listas-ordenadas}
+
+\begin{verbatim}
+1. example
+2. example
+
+A) example
+B) example
+\end{verbatim}
+
+\subsection{Lisas desordenadas}\label{lisas-desordenadas}
+
+Los items de la lista deben ir marcados con `*', `+', or `-'.
+
+\begin{verbatim}
++   example
+-   example
+*   example
+\end{verbatim}
+
+Las listas se pueden anidar de la forma usual:
+
+\begin{verbatim}
++   example
+    +   example
++   example
+\end{verbatim}
+
+\subsection{Listas de definición}\label{listas-de-definiciuxf3n}
+
+\begin{verbatim}
+Term 1
+  ~ Definition 1
+Term 2
+  ~ Definition 2a
+  ~ Definition 2b
+
+Term 1
+:   Definition 1
+Term 2
+:   Definition 2
+    Second paragraph of definition 2.
+\end{verbatim}
+
+\section{Blockquotes}\label{blockquotes}
+
+\begin{verbatim}
+>   blockquote
+>>  nested blockquote
+\end{verbatim}
+
+Es necesario añadir lineas en blanco antes y después de los
+bloques-cita.
+
+\section{Tablas}\label{tablas}
+
+\begin{verbatim}
+  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1
+
+Table:  Demonstration of simple table syntax.
+\end{verbatim}
+
+(Para tablas más complejas consulta la documentación de Pandoc.)
+
+\section{Bloques de código}\label{bloques-de-cuxf3digo}
+
+Los bloques de código empiezan con tres o más tildes; y acaban por lo
+menos con el mismo número de tildes:
+
+\begin{verbatim}
+~~~~~~~
+{code here}
+~~~~~~~
+\end{verbatim}
+
+Opcionalmente, se puede especificar el lenguaje que corresponde al
+bloque de código:
+
+\begin{verbatim}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.haskell .numberLines}
+qsort []     = []
+qsort (x:xs) = qsort (filter (< x) xs) ++ [x] ++
+               qsort (filter (>= x) xs)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\end{verbatim}
+
+\section{Lineas horizontales}\label{lineas-horizontales}
+
+3 o mas guiones o asteriscos en una linea (se permiten espacios
+intercalados)
+
+\begin{verbatim}
+---
+* * *
+- - - -
+\end{verbatim}
+
+\section{Bloques verbatim}\label{bloques-verbatim}
+
+Todo el texto identado cuatro espacios
+
+\begin{verbatim}
+Ejemplo Esto es un bloque verbatim y por ejemplo *esto* aparece
+tal cual y no en itálica.
+\end{verbatim}
+
+\end{document}

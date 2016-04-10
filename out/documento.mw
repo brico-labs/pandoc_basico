@@ -1,0 +1,180 @@
+Solo para referencia rápida y personal.
+
+= Backslash Escapes =
+
+Salvo que estemos dentro de un bloque de código o de &quot;código en linea&quot;, '''cualquier carácter de puntuación o espacio''' precedido de contrabarra se tratará de forma literal, incluso si ese carácter normalmente indique algún formato.
+
+= Bloque de título =
+
+Es una forma rápida de indicar el título el autor o autores y la fecha.
+
+<pre>% título
+% autor(es) (separados por :)
+% fecha</pre>
+Un bloque de título mucho más completo:
+
+<pre>---
+title: Título
+author:
+- Autor Uno &lt;autor.uno@gmail.com&gt;
+- Otro autor &lt;otroautor@gmail.com&gt;
+tags: [nothing, nothingness]
+date: enero-2016
+lang: es-ES
+abstract: |
+  Este es el resumen.
+
+  Con dos párrafos.
+...</pre>
+= Incrustar TeX y HTML =
+
+* Los comandos TeX se pasan de forma transparente al Markdown, y afectan solo a la salida de LaTeX y ConTeXt; en el resto de casos se borran
+* El código HTML pasará a la salida sin cambios, pero el Markdown dentro de los bloques HTML se procesa como Markdown
+
+= Párrafos y retornos de línea =
+
+* Un párrafo es una o más líneas de texto separadas por una linea en blanco del resto
+* Una línea que termina con dos espacios, o una línea que termina con un fin de linea escapado (contrabarra seguida de retorno de linea) indica un cambio de linea manual
+
+= Itálica, negrita, superescrito, subesctrito, tachado =
+
+<pre>*Itálica* and **negrita** se indican con asteriscos.
+
+Para  ~~tachar~~ texto usa tildes dobles.
+
+Superscrito se indica así: 2^ndo^.
+
+Subescrito con tildes simples, así: H~2~O.
+
+Los espacios en el superescrito y el subescrito tienen que ir escapados,
+p.ej., H~esto\ es \ un\ subescrito~.</pre>
+= TeX matématico o código incrustado en linea =
+
+<pre>El TeX matemático va entre signos$: $2 + 2$.
+
+El código en linea va entre comillas invertidas: `echo 'hello'`</pre>
+= Enlaces e imágenes =
+
+<pre>&lt;http://example.com&gt;
+&lt;foo@bar.com&gt;
+[inline link](http://example.com &quot;Title&quot;)
+![inline image](/path/to/image, &quot;alt text&quot;)
+
+[reference link][id]
+[implicit reference link][]
+![reference image][id2]
+
+[id]: http://example.com &quot;Title&quot;
+[implicit reference link]: http://example.com
+[id2]: /path/to/image &quot;alt text&quot;</pre>
+= Notas al pie de página =
+
+<pre>Las notas en linea son como esta.^[Nótese que las notas en linea no pueden tener más de un párrafo.] Las notas de referencia son como esta.[^id]
+
+[^id]:  Las notas de referencia pueden contener varios párrafos.
+
+    Los parámetros a continuación deben estar identados.</pre>
+= Citas =
+
+<pre>Blah blah [see @doe99, pp. 33-35; also @smith04, ch. 1].
+
+Blah blah [@doe99, pp. 33-35, 38-39 and *passim*].
+
+Blah blah [@smith04; @doe99].
+
+Smith says blah [-@smith04].
+
+@smith04 says blah.
+
+@smith04 [p. 33] says blah.</pre>
+= Encabezados =
+
+<pre>Encabezado 1
+========
+
+Encabezado 2
+--------
+
+# Encabezado 1 #
+
+## Encabezado 2 ##</pre>
+Las almohadillas de cierre # son opcionales. Es necesario añadir una línea en blanco antes y después de cada cabecera.
+
+= Listas =
+
+== Listas Ordenadas ==
+
+<pre>1. example
+2. example
+
+A) example
+B) example</pre>
+== Lisas desordenadas ==
+
+Los items de la lista deben ir marcados con '*', '+', or '-'.
+
+<pre>+   example
+-   example
+*   example</pre>
+Las listas se pueden anidar de la forma usual:
+
+<pre>+   example
+    +   example
++   example</pre>
+== Listas de definición ==
+
+<pre>Term 1
+  ~ Definition 1
+Term 2
+  ~ Definition 2a
+  ~ Definition 2b
+
+Term 1
+:   Definition 1
+Term 2
+:   Definition 2
+    Second paragraph of definition 2.</pre>
+= Blockquotes =
+
+<pre>&gt;   blockquote
+&gt;&gt;  nested blockquote</pre>
+Es necesario añadir lineas en blanco antes y después de los bloques-cita.
+
+= Tablas =
+
+<pre>  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1
+
+Table:  Demonstration of simple table syntax.</pre>
+(Para tablas más complejas consulta la documentación de Pandoc.)
+
+= Bloques de código =
+
+Los bloques de código empiezan con tres o más tildes; y acaban por lo menos con el mismo número de tildes:
+
+<pre>~~~~~~~
+{code here}
+~~~~~~~</pre>
+Opcionalmente, se puede especificar el lenguaje que corresponde al bloque de código:
+
+<pre>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.haskell .numberLines}
+qsort []     = []
+qsort (x:xs) = qsort (filter (&lt; x) xs) ++ [x] ++
+               qsort (filter (&gt;= x) xs)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</pre>
+= Lineas horizontales =
+
+3 o mas guiones o asteriscos en una linea (se permiten espacios intercalados)
+
+<pre>---
+* * *
+- - - -</pre>
+= Bloques verbatim =
+
+Todo el texto identado cuatro espacios
+
+<pre>Ejemplo Esto es un bloque verbatim y por ejemplo *esto* aparece
+tal cual y no en itálica.</pre>
