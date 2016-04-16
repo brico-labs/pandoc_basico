@@ -48,6 +48,13 @@ Si quieres cambiar el nombre del fichero de salida (*documento*) tendrás que ed
 
 Otras líneas que puedes tocar en el makefile son las que especifican el idioma y los tipos de letra usados.
 
+¿Qué es Pandoc?
+===============
+
+Como explican en \[http://pandoc.org\], Pandoc es una librería en Haskell para hacer conversión de documentos de un formato markup a otro. Y también es una herramienta de terminal de comandos que usa esa librería.
+
+Lo que nos permite Pandoc a la hora de documentar un proyecto es mantener la documentación en un formato abierto y sencillo (markdown) y generar salidas en distintos formatos (pdf, mediawiki, epub, html, etc) con un simple comando.
+
 ¿Qué necesitas tener instalado?
 ===============================
 
@@ -74,15 +81,15 @@ Es una forma rápida de indicar el título el autor o autores y la fecha. Tiene 
     % autor(es) (separados por :)
     % fecha
 
-Alternativamente se puede usar un bloque de título mucho más completo mediante el formato [YAML](https://en.wikipedia.org/wiki/YAML), especificando variables. No puede usarse simultáneamente con el anterior, hay que escoger entre los dos estilos.
+Alternativamente se puede usar otro estilo para el bloque de título, mucho más completo, en formato [YAML](https://en.wikipedia.org/wiki/YAML), especificando variables. No puede usarse simultáneamente con el anterior, hay que escoger entre los dos estilos.
 
 Se pueden especificar todo tipo de variables [1].
 
     ---
     title: Título
     author:
-    - Autor Uno <autor.uno@gmail.com>
-    - Otro autor <otroautor@gmail.com>
+    - Autor Uno <autor.uno@correo.com>
+    - Otro autor <otroautor@correo.com>
     tags: [nothing, nothingness]
     date: enero-2016
     lang: es-ES
@@ -281,4 +288,4 @@ En que me he basado (o copiado si lo prefieres)
 -   En la [chuleta de Pandoc](https://github.com/dsanson/Pandoc.tmbundle/blob/master/Support/doc/cheatsheet.markdown) de [David Sanson](https://github.com/dsanson), perfecta para referencia rápida
 -   Para hacer el makefile me he leido varios tutoriales y copiado descaradamente de varios sitios que olvidé apuntar (lo siento)
 
-[1] Ojo por que en el makefile se especifica el lenguaje, asi que la variable del bloque de título no va a tener efecto en este caso.
+[1] Ojo por que en el makefile propuesto se especifica el lenguaje, asi que la variable del bloque de título no va a tener efecto en este caso.

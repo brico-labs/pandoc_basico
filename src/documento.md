@@ -4,14 +4,12 @@ author:
 - Sergio Alvariño <salvari@gmail.com>
 tags: [Pandoc, Documentación, makefile, git]
 date: abril-2016
-lang: gl-ES
+lang: es-ES
 abstract: |
   Una chuleta para usar Pandoc, copiado descaradamente de varios sitios de internet.
   
   Solo para referencia rápida y personal.
 ---
-
-
 
 # ¿Cómo usar esto?
 
@@ -72,6 +70,18 @@ tendrás que editar el makefile y cambiar la línea:
 Otras líneas que puedes tocar en el makefile son las que especifican
 el idioma y los tipos de letra usados.
 
+# ¿Qué es Pandoc?
+
+Como explican en [http://pandoc.org], Pandoc es una librería en
+Haskell para hacer conversión de documentos de un formato markup a
+otro. Y también es una herramienta de terminal de comandos que usa esa
+librería.
+
+Lo que nos permite Pandoc a la hora de documentar un proyecto es
+mantener la documentación en un formato abierto y sencillo (markdown)
+y generar salidas en distintos formatos (pdf, mediawiki, epub, html,
+etc) con un simple comando.
+
 # ¿Qué necesitas tener instalado?
 
 * Pandoc
@@ -101,19 +111,20 @@ fecha. Tiene que ir al principio del documento
     % autor(es) (separados por :)
     % fecha
 
-Alternativamente se puede usar un bloque de título mucho más completo
-mediante el formato [YAML](https://en.wikipedia.org/wiki/YAML),
-especificando variables. No puede usarse simultáneamente con el anterior, hay que escoger
-entre los dos estilos.
+Alternativamente se puede usar otro estilo para el bloque de título,
+mucho más completo, en formato
+[YAML](https://en.wikipedia.org/wiki/YAML), especificando
+variables. No puede usarse simultáneamente con el anterior, hay que
+escoger entre los dos estilos.
 
 Se pueden especificar todo tipo de variables
-^[Ojo por que en el makefile se especifica el lenguaje, asi que la variable del bloque de título no va a tener efecto en este caso.].
+^[Ojo por que en el makefile propuesto se especifica el lenguaje, asi que la variable del bloque de título no va a tener efecto en este caso.].
 
     ---
     title: Título
     author:
-    - Autor Uno <autor.uno@gmail.com>
-    - Otro autor <otroautor@gmail.com>
+    - Autor Uno <autor.uno@correo.com>
+    - Otro autor <otroautor@correo.com>
     tags: [nothing, nothingness]
     date: enero-2016
     lang: es-ES

@@ -147,6 +147,18 @@ target  := documento
 Otras líneas que puedes tocar en el makefile son las que especifican el
 idioma y los tipos de letra usados.
 
+\section{¿Qué es Pandoc?}\label{quuxe9-es-pandoc}
+
+Como explican en {[}http://pandoc.org{]}, Pandoc es una librería en
+Haskell para hacer conversión de documentos de un formato markup a otro.
+Y también es una herramienta de terminal de comandos que usa esa
+librería.
+
+Lo que nos permite Pandoc a la hora de documentar un proyecto es
+mantener la documentación en un formato abierto y sencillo (markdown) y
+generar salidas en distintos formatos (pdf, mediawiki, epub, html, etc)
+con un simple comando.
+
 \section{¿Qué necesitas tener
 instalado?}\label{quuxe9-necesitas-tener-instalado}
 
@@ -184,21 +196,22 @@ Tiene que ir al principio del documento
 % fecha
 \end{verbatim}
 
-Alternativamente se puede usar un bloque de título mucho más completo
-mediante el formato \href{https://en.wikipedia.org/wiki/YAML}{YAML},
-especificando variables. No puede usarse simultáneamente con el
-anterior, hay que escoger entre los dos estilos.
+Alternativamente se puede usar otro estilo para el bloque de título,
+mucho más completo, en formato
+\href{https://en.wikipedia.org/wiki/YAML}{YAML}, especificando
+variables. No puede usarse simultáneamente con el anterior, hay que
+escoger entre los dos estilos.
 
 Se pueden especificar todo tipo de variables \footnote{Ojo por que en el
-  makefile se especifica el lenguaje, asi que la variable del bloque de
-  título no va a tener efecto en este caso.}.
+  makefile propuesto se especifica el lenguaje, asi que la variable del
+  bloque de título no va a tener efecto en este caso.}.
 
 \begin{verbatim}
 ---
 title: Título
 author:
-- Autor Uno <autor.uno@gmail.com>
-- Otro autor <otroautor@gmail.com>
+- Autor Uno <autor.uno@correo.com>
+- Otro autor <otroautor@correo.com>
 tags: [nothing, nothingness]
 date: enero-2016
 lang: es-ES
