@@ -126,7 +126,7 @@ Itálica, negrita, superescrito, subesctrito, tachado
     Los espacios en el superescrito y el subescrito tienen que ir escapados,
     p.ej., H~esto\ es \ un\ subescrito~.
 
-TeX matématico o código incrustado en linea
+TeX matemático o código incrustado en linea
 -------------------------------------------
 
     El TeX matemático va entre signos$: $2 + 2$.
@@ -203,7 +203,7 @@ Listas
 
 #### Listas desordenadas
 
-Los items de la lista deben ir marcados con '\*', '+', or '-'.
+Los ítems de la lista deben ir marcados con '\*', '+', or '-'.
 
     +   example
     -   example
@@ -284,8 +284,8 @@ Todo el texto identado cuatro espacios
 En que me he basado (o copiado si lo prefieres)
 ===============================================
 
--   En la [guia de usuario de Pandoc](http://pandoc.org/README.html) Importante leersela para sacarle todo el jugo a esta herramienta
+-   En la [guía de usuario de Pandoc](http://pandoc.org/README.html) Importante leérsela para sacarle todo el jugo a esta herramienta
 -   En la [chuleta de Pandoc](https://github.com/dsanson/Pandoc.tmbundle/blob/master/Support/doc/cheatsheet.markdown) de [David Sanson](https://github.com/dsanson), perfecta para referencia rápida
 -   Para hacer el makefile me he leido varios tutoriales y copiado descaradamente de varios sitios que olvidé apuntar (lo siento)
 
-[1] Ojo por que en el makefile propuesto se especifica el lenguaje, asi que la variable del bloque de título no va a tener efecto en este caso.
+[1] Ojo por que en el makefile propuesto se especifica el lenguaje, así que la variable del bloque de título no va a tener efecto en este caso.
