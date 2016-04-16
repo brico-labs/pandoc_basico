@@ -51,7 +51,7 @@ Otras líneas que puedes tocar en el makefile son las que especifican el idioma 
 ¿Qué es Pandoc?
 ===============
 
-Como explican en \[http://pandoc.org\], Pandoc es una librería en Haskell para hacer conversión de documentos de un formato markup a otro. Y también es una herramienta de terminal de comandos que usa esa librería.
+Como explican en http://pandoc.org, Pandoc es una librería en Haskell para hacer conversión de documentos de un formato markup a otro. Y también es una herramienta de terminal de comandos que usa esa librería.
 
 Lo que nos permite Pandoc a la hora de documentar un proyecto es mantener la documentación en un formato abierto y sencillo (markdown) y generar salidas en distintos formatos (pdf, mediawiki, epub, html, etc) con un simple comando.
 

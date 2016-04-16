@@ -72,7 +72,7 @@ el idioma y los tipos de letra usados.
 
 # ¿Qué es Pandoc?
 
-Como explican en [http://pandoc.org], Pandoc es una librería en
+Como explican en http://pandoc.org, Pandoc es una librería en
 Haskell para hacer conversión de documentos de un formato markup a
 otro. Y también es una herramienta de terminal de comandos que usa esa
 librería.

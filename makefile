@@ -73,7 +73,6 @@ $(output)/$(target).docx: $(sources)
 	--output=$(output)/$(target).docx \
 	$(sources)
 
-
 # github   -- buid github README.md file into repo root directory
 github: README.md $(sources)
 README.md: $(sources)
