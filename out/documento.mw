@@ -52,6 +52,22 @@ Lo que nos permite Pandoc a la hora de documentar un proyecto es mantener la doc
 * Las plantillas de Pandoc (o ''templates'')
 * Un buen editor de texto
 
+== Instalación de Pandoc ==
+
+Los paquetes de Pandoc están disponibles en la [http://pandoc.org/installing.html página de descargas del proyecto]. En el caso de Ubuntu se instala sin más que descargar el paquete y abrirlo con el Centro de Software.
+
+== Instalación de plantillas de Pandoc ==
+
+Hay muchas plantillas para generar documentación con Pandoc, puestas a disposición de la comunidad. De momento nos hemos limitado a las plantillas del creador de Pandoc:
+
+<pre class="{bash}">cd 
+mkdir .pandoc
+cd .pandoc
+git clone https://github.com/jgm/pandoc-templates templates</pre>
+Esto dejará las plantillas en el directorio ''~/.pandoc/templates'' que es uno de los directorios donde Pandoc busca las plantillas.
+
+No hay inconveniente en dejar las plantillas en otro directorio, o incluso en el arbol de nuestro proyecto, pero habría que retocar el ''makefile'' para que Pandoc las encontrara sin problemas.
+
 = Chuletario de Pandoc =
 
 == Backslash Escapes ==
@@ -106,7 +122,7 @@ Subescrito con tildes simples, así: H~2~O.
 
 Los espacios en el superescrito y el subescrito tienen que ir escapados,
 p.ej., H~esto\ es \ un\ subescrito~.</pre>
-== TeX matématico o código incrustado en linea ==
+== TeX matemático o código incrustado en linea ==
 
 <pre>El TeX matemático va entre signos$: $2 + 2$.
 

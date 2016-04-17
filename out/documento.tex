@@ -175,6 +175,35 @@ instalado?}\label{quuxe9-necesitas-tener-instalado}
   Un buen editor de texto
 \end{itemize}
 
+\subsection{Instalación de Pandoc}\label{instalaciuxf3n-de-pandoc}
+
+Los paquetes de Pandoc están disponibles en la
+\href{http://pandoc.org/installing.html}{página de descargas del
+proyecto}. En el caso de Ubuntu se instala sin más que descargar el
+paquete y abrirlo con el Centro de Software.
+
+\subsection{Instalación de plantillas de
+Pandoc}\label{instalaciuxf3n-de-plantillas-de-pandoc}
+
+Hay muchas plantillas para generar documentación con Pandoc, puestas a
+disposición de la comunidad. De momento nos hemos limitado a las
+plantillas del creador de Pandoc:
+
+\begin{verbatim}
+cd 
+mkdir .pandoc
+cd .pandoc
+git clone https://github.com/jgm/pandoc-templates templates
+\end{verbatim}
+
+Esto dejará las plantillas en el directorio
+\emph{\textasciitilde{}/.pandoc/templates} que es uno de los directorios
+donde Pandoc busca las plantillas.
+
+No hay inconveniente en dejar las plantillas en otro directorio, o
+incluso en el arbol de nuestro proyecto, pero habría que retocar el
+\emph{makefile} para que Pandoc las encontrara sin problemas.
+
 \section{Chuletario de Pandoc}\label{chuletario-de-pandoc}
 
 \subsection{Backslash Escapes}\label{backslash-escapes}
@@ -264,8 +293,8 @@ Los espacios en el superescrito y el subescrito tienen que ir escapados,
 p.ej., H~esto\ es \ un\ subescrito~.
 \end{verbatim}
 
-\subsection{TeX matématico o código incrustado en
-linea}\label{tex-matuxe9matico-o-cuxf3digo-incrustado-en-linea}
+\subsection{TeX matemático o código incrustado en
+linea}\label{tex-matemuxe1tico-o-cuxf3digo-incrustado-en-linea}
 
 \begin{verbatim}
 El TeX matemático va entre signos$: $2 + 2$.

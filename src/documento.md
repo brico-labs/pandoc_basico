@@ -90,6 +90,33 @@ etc) con un simple comando.
 * Las plantillas de Pandoc (o *templates*)
 * Un buen editor de texto
 
+## Instalación de Pandoc
+
+Los paquetes de Pandoc están disponibles en la
+[página de descargas del proyecto](http://pandoc.org/installing.html). En
+el caso de Ubuntu se instala sin más que descargar el paquete y
+abrirlo con el Centro de Software.
+
+## Instalación de plantillas de Pandoc
+
+Hay muchas plantillas para generar documentación con Pandoc, puestas a
+disposición de la comunidad. De momento nos hemos limitado a las
+plantillas del creador de Pandoc:
+
+~~~~{bash}
+cd 
+mkdir .pandoc
+cd .pandoc
+git clone https://github.com/jgm/pandoc-templates templates
+~~~~
+
+Esto dejará las plantillas en el directorio _~/.pandoc/templates_ que
+es uno de los directorios donde Pandoc busca las plantillas.
+
+No hay inconveniente en dejar las plantillas en otro directorio, o
+incluso en el arbol de nuestro proyecto, pero habría que retocar el
+_makefile_ para que Pandoc las encontrara sin problemas.
+
 
 
 # Chuletario de Pandoc
@@ -164,7 +191,7 @@ dentro de los bloques HTML se procesa como Markdown
     Los espacios en el superescrito y el subescrito tienen que ir escapados,
     p.ej., H~esto\ es \ un\ subescrito~.
 
-## TeX matématico o código incrustado en linea
+## TeX matemático o código incrustado en linea
 
     El TeX matemático va entre signos$: $2 + 2$.
 

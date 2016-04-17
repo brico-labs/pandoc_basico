@@ -64,6 +64,27 @@ Lo que nos permite Pandoc a la hora de documentar un proyecto es mantener la doc
 -   Las plantillas de Pandoc (o *templates*)
 -   Un buen editor de texto
 
+Instalación de Pandoc
+---------------------
+
+Los paquetes de Pandoc están disponibles en la [página de descargas del proyecto](http://pandoc.org/installing.html). En el caso de Ubuntu se instala sin más que descargar el paquete y abrirlo con el Centro de Software.
+
+Instalación de plantillas de Pandoc
+-----------------------------------
+
+Hay muchas plantillas para generar documentación con Pandoc, puestas a disposición de la comunidad. De momento nos hemos limitado a las plantillas del creador de Pandoc:
+
+``` {bash}
+cd 
+mkdir .pandoc
+cd .pandoc
+git clone https://github.com/jgm/pandoc-templates templates
+```
+
+Esto dejará las plantillas en el directorio *~/.pandoc/templates* que es uno de los directorios donde Pandoc busca las plantillas.
+
+No hay inconveniente en dejar las plantillas en otro directorio, o incluso en el arbol de nuestro proyecto, pero habría que retocar el *makefile* para que Pandoc las encontrara sin problemas.
+
 Chuletario de Pandoc
 ====================
 
@@ -203,7 +224,7 @@ Listas
 
 #### Listas desordenadas
 
-Los ítems de la lista deben ir marcados con '\*', '+', or '-'.
+Los items de la lista deben ir marcados con '\*', '+', or '-'.
 
     +   example
     -   example
@@ -284,8 +305,8 @@ Todo el texto identado cuatro espacios
 En que me he basado (o copiado si lo prefieres)
 ===============================================
 
--   En la [guía de usuario de Pandoc](http://pandoc.org/README.html) Importante leérsela para sacarle todo el jugo a esta herramienta
+-   En la [guia de usuario de Pandoc](http://pandoc.org/README.html) Importante leersela para sacarle todo el jugo a esta herramienta
 -   En la [chuleta de Pandoc](https://github.com/dsanson/Pandoc.tmbundle/blob/master/Support/doc/cheatsheet.markdown) de [David Sanson](https://github.com/dsanson), perfecta para referencia rápida
 -   Para hacer el makefile me he leido varios tutoriales y copiado descaradamente de varios sitios que olvidé apuntar (lo siento)
 
-[1] Ojo por que en el makefile propuesto se especifica el lenguaje, así que la variable del bloque de título no va a tener efecto en este caso.
+[1] Ojo por que en el makefile propuesto se especifica el lenguaje, asi que la variable del bloque de título no va a tener efecto en este caso.
