@@ -1,6 +1,6 @@
 source  := src
 output  := out
-sources := $(wildcard $(source)/*.md)
+sources := $(wildcard $(source)/*_es.md)
 lang    := es-ES
 target  := documento
 
@@ -85,5 +85,6 @@ clean:
 	rm -f $(output)/*.tex
 	rm -f $(output)/*.mw
 	rm -f $(output)/*.odt
+	rm -f $(output)/*.epub
 	rm -f $(output)/*.docx
 	rm -r README.md
