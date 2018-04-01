@@ -11,8 +11,8 @@ target  := documento
 mainfont := 'Ubuntu'
 monofont := 'Ubuntu Mono'
 
-pdf_opt := --smart --standalone --variable geometry:a4paper --variable lang=$(lang) \
-           --number-sections --toc --from=markdown --to latex --latex-engine=xelatex \
+pdf_opt := --from markdown --standalone --variable geometry:a4paper --variable lang=$(lang) \
+           --number-sections --toc --from=markdown --to latex --pdf-engine=xelatex \
            --variable colorlinks \
            --variable mainfont=$(mainfont) \
            --variable monofont=$(monofont) \
@@ -76,7 +76,7 @@ $(output)/$(target).docx: $(sources)
 # github   -- buid github README.md file into repo root directory
 github: README.md $(sources)
 README.md: $(sources)
-	pandoc --from markdown --to markdown_github \
+	pandoc --from markdown --to gfm \
 	--output=README.md \
 	$(sources)
 

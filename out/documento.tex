@@ -1,3 +1,7 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
 \documentclass[12pt,spanish,]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
@@ -6,12 +10,9 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
+  \usepackage{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
     \setmainfont[]{Ubuntu}
     \setmonofont[Mapping=tex-ansi]{Ubuntu Mono}
@@ -20,13 +21,18 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
 \IfFileExists{microtype.sty}{%
-\usepackage{microtype}
+\usepackage[]{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\usepackage[a4paper]{geometry}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{xcolor}
 \usepackage{hyperref}
-\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
-\hypersetup{unicode=true,
+\hypersetup{
             pdftitle={Usando Pandoc},
             pdfauthor={Sergio Alvariño salvari@gmail.com},
             colorlinks=true,
@@ -35,18 +41,7 @@
             urlcolor=Blue,
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[shorthands=off,main=spanish]{babel}
-\else
-  \usepackage{polyglossia}
-  \setmainlanguage[]{spanish}
-\fi
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
+\usepackage[a4paper]{geometry}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -59,6 +54,19 @@
 \ifx\subparagraph\undefined\else
 \let\oldsubparagraph\subparagraph
 \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=spanish]{babel}
+\else
+  % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{spanish}
 \fi
 
 \title{Usando Pandoc}
@@ -76,13 +84,15 @@ Solo para referencia rápida y personal.
 \end{abstract}
 
 {
-\hypersetup{linkcolor=black}
+\hypersetup{linkcolor=}
 \setcounter{tocdepth}{3}
 \tableofcontents
 }
-\section{¿Cómo usar esto?}\label{cuxf3mo-usar-esto}
+\hypertarget{cuxf3mo-usar-esto}{%
+\section{¿Cómo usar esto?}\label{cuxf3mo-usar-esto}}
 
-\subsection{Muy rápido}\label{muy-ruxe1pido}
+\hypertarget{muy-ruxe1pido}{%
+\subsection{Muy rápido}\label{muy-ruxe1pido}}
 
 Clona el repo en un directorio :
 
@@ -117,7 +127,8 @@ Para borrar todos los ficheros de salida
 Equivale a \emph{make clean all}
 \end{description}
 
-\subsection{Más detalles}\label{muxe1s-detalles}
+\hypertarget{muxe1s-detalles}{%
+\subsection{Más detalles}\label{muxe1s-detalles}}
 
 El makefile está preparado para procesar \textbf{todos} los ficheros con
 extensión \emph{.md} que haya en el directorio \emph{src}. Esto permite
@@ -147,7 +158,8 @@ target  := documento
 Otras líneas que puedes tocar en el makefile son las que especifican el
 idioma y los tipos de letra usados.
 
-\section{¿Qué es Pandoc?}\label{quuxe9-es-pandoc}
+\hypertarget{quuxe9-es-pandoc}{%
+\section{¿Qué es Pandoc?}\label{quuxe9-es-pandoc}}
 
 Como explican en http://pandoc.org, Pandoc es una librería en Haskell
 para hacer conversión de documentos de un formato markup a otro. Y
@@ -158,8 +170,9 @@ mantener la documentación en un formato abierto y sencillo (markdown) y
 generar salidas en distintos formatos (pdf, mediawiki, epub, html, etc)
 con un simple comando.
 
+\hypertarget{quuxe9-necesitas-tener-instalado}{%
 \section{¿Qué necesitas tener
-instalado?}\label{quuxe9-necesitas-tener-instalado}
+instalado?}\label{quuxe9-necesitas-tener-instalado}}
 
 \begin{itemize}
 \tightlist
@@ -175,15 +188,17 @@ instalado?}\label{quuxe9-necesitas-tener-instalado}
   Un buen editor de texto
 \end{itemize}
 
-\subsection{Instalación de Pandoc}\label{instalaciuxf3n-de-pandoc}
+\hypertarget{instalaciuxf3n-de-pandoc}{%
+\subsection{Instalación de Pandoc}\label{instalaciuxf3n-de-pandoc}}
 
 Los paquetes de Pandoc están disponibles en la
 \href{http://pandoc.org/installing.html}{página de descargas del
 proyecto}. En el caso de Ubuntu se instala sin más que descargar el
 paquete y abrirlo con el Centro de Software.
 
+\hypertarget{instalaciuxf3n-de-plantillas-de-pandoc}{%
 \subsection{Instalación de plantillas de
-Pandoc}\label{instalaciuxf3n-de-plantillas-de-pandoc}
+Pandoc}\label{instalaciuxf3n-de-plantillas-de-pandoc}}
 
 Hay muchas plantillas para generar documentación con Pandoc, puestas a
 disposición de la comunidad. De momento nos hemos limitado a las
@@ -204,16 +219,19 @@ No hay inconveniente en dejar las plantillas en otro directorio, o
 incluso en el arbol de nuestro proyecto, pero habría que retocar el
 \emph{makefile} para que Pandoc las encontrara sin problemas.
 
-\section{Chuletario de Pandoc}\label{chuletario-de-pandoc}
+\hypertarget{chuletario-de-pandoc}{%
+\section{Chuletario de Pandoc}\label{chuletario-de-pandoc}}
 
-\subsection{Backslash Escapes}\label{backslash-escapes}
+\hypertarget{backslash-escapes}{%
+\subsection{Backslash Escapes}\label{backslash-escapes}}
 
 Salvo que estemos dentro de un bloque de código o de ``código en
 linea'', \textbf{cualquier carácter de puntuación o espacio} precedido
 de contrabarra se tratará de forma literal, incluso si ese carácter
 normalmente indique algún formato.
 
-\subsection{Bloque de título}\label{bloque-de-tuxedtulo}
+\hypertarget{bloque-de-tuxedtulo}{%
+\subsection{Bloque de título}\label{bloque-de-tuxedtulo}}
 
 Es una forma rápida de indicar el título el autor o autores y la fecha.
 Tiene que ir al principio del documento
@@ -251,7 +269,8 @@ abstract: |
 ---
 \end{verbatim}
 
-\subsection{Incrustar TeX y HTML}\label{incrustar-tex-y-html}
+\hypertarget{incrustar-tex-y-html}{%
+\subsection{Incrustar TeX y HTML}\label{incrustar-tex-y-html}}
 
 \begin{itemize}
 \tightlist
@@ -263,8 +282,9 @@ abstract: |
   de los bloques HTML se procesa como Markdown
 \end{itemize}
 
+\hypertarget{puxe1rrafos-y-retornos-de-luxednea}{%
 \subsection{Párrafos y retornos de
-línea}\label{puxe1rrafos-y-retornos-de-luxednea}
+línea}\label{puxe1rrafos-y-retornos-de-luxednea}}
 
 \begin{itemize}
 \tightlist
@@ -277,8 +297,9 @@ línea}\label{puxe1rrafos-y-retornos-de-luxednea}
   un cambio de linea manual
 \end{itemize}
 
+\hypertarget{ituxe1lica-negrita-superescrito-subesctrito-tachado}{%
 \subsection{Itálica, negrita, superescrito, subesctrito,
-tachado}\label{ituxe1lica-negrita-superescrito-subesctrito-tachado}
+tachado}\label{ituxe1lica-negrita-superescrito-subesctrito-tachado}}
 
 \begin{verbatim}
 *Itálica* and **negrita** se indican con asteriscos.
@@ -293,8 +314,9 @@ Los espacios en el superescrito y el subescrito tienen que ir escapados,
 p.ej., H~esto\ es \ un\ subescrito~.
 \end{verbatim}
 
+\hypertarget{tex-matemuxe1tico-o-cuxf3digo-incrustado-en-linea}{%
 \subsection{TeX matemático o código incrustado en
-linea}\label{tex-matemuxe1tico-o-cuxf3digo-incrustado-en-linea}
+linea}\label{tex-matemuxe1tico-o-cuxf3digo-incrustado-en-linea}}
 
 \begin{verbatim}
 El TeX matemático va entre signos$: $2 + 2$.
@@ -302,7 +324,8 @@ El TeX matemático va entre signos$: $2 + 2$.
 El código en linea va entre comillas invertidas: `echo 'hello'`
 \end{verbatim}
 
-\subsection{Enlaces e imágenes}\label{enlaces-e-imuxe1genes}
+\hypertarget{enlaces-e-imuxe1genes}{%
+\subsection{Enlaces e imágenes}\label{enlaces-e-imuxe1genes}}
 
 \begin{verbatim}
 <http://example.com>
@@ -319,7 +342,8 @@ El código en linea va entre comillas invertidas: `echo 'hello'`
 [id2]: /path/to/image "alt text"
 \end{verbatim}
 
-\subsection{Notas al pie de página}\label{notas-al-pie-de-puxe1gina}
+\hypertarget{notas-al-pie-de-puxe1gina}{%
+\subsection{Notas al pie de página}\label{notas-al-pie-de-puxe1gina}}
 
 \begin{verbatim}
 Las notas en linea son como
@@ -331,7 +355,8 @@ Las notas de referencia son como esta.[^id]
     Los parámetros a continuación deben estar identados.
 \end{verbatim}
 
-\subsection{Citas}\label{citas}
+\hypertarget{citas}{%
+\subsection{Citas}\label{citas}}
 
 \begin{verbatim}
 Blah blah [see @doe99, pp. 33-35; also @smith04, ch. 1].
@@ -347,7 +372,8 @@ Smith says blah [-@smith04].
 @smith04 [p. 33] says blah.
 \end{verbatim}
 
-\subsection{Encabezados}\label{encabezados}
+\hypertarget{encabezados}{%
+\subsection{Encabezados}\label{encabezados}}
 
 \begin{verbatim}
 Encabezado 1
@@ -364,9 +390,11 @@ Encabezado 2
 Las almohadillas de cierre \# son opcionales. Es necesario añadir una
 línea en blanco antes y después de cada cabecera.
 
-\subsection{Listas}\label{listas}
+\hypertarget{listas}{%
+\subsection{Listas}\label{listas}}
 
-\paragraph{Listas Ordenadas}\label{listas-ordenadas}
+\hypertarget{listas-ordenadas}{%
+\paragraph{Listas Ordenadas}\label{listas-ordenadas}}
 
 \begin{verbatim}
 1. example
@@ -376,7 +404,8 @@ A) example
 B) example
 \end{verbatim}
 
-\paragraph{Listas desordenadas}\label{listas-desordenadas}
+\hypertarget{listas-desordenadas}{%
+\paragraph{Listas desordenadas}\label{listas-desordenadas}}
 
 Los items de la lista deben ir marcados con `*', `+', or `-'.
 
@@ -394,7 +423,8 @@ Las listas se pueden anidar de la forma usual:
 +   example
 \end{verbatim}
 
-\paragraph{Listas de definición}\label{listas-de-definiciuxf3n}
+\hypertarget{listas-de-definiciuxf3n}{%
+\paragraph{Listas de definición}\label{listas-de-definiciuxf3n}}
 
 \begin{verbatim}
 Term 1
@@ -407,7 +437,8 @@ Term 2
     Second paragraph of definition 2.
 \end{verbatim}
 
-\subsection{Blockquotes}\label{blockquotes}
+\hypertarget{blockquotes}{%
+\subsection{Blockquotes}\label{blockquotes}}
 
 \begin{verbatim}
 >   blockquote
@@ -417,7 +448,8 @@ Term 2
 Es necesario añadir lineas en blanco antes y después de los
 bloques-cita.
 
-\subsection{Tablas}\label{tablas}
+\hypertarget{tablas}{%
+\subsection{Tablas}\label{tablas}}
 
 \begin{verbatim}
   Right     Left     Center     Default
@@ -432,7 +464,8 @@ Table:  Demonstration of simple table syntax.
 (Para tablas más complejas consulta la
 \href{http://pandoc.org/README.html\#tables}{documentación de Pandoc}.)
 
-\subsection{Bloques de código}\label{bloques-de-cuxf3digo}
+\hypertarget{bloques-de-cuxf3digo}{%
+\subsection{Bloques de código}\label{bloques-de-cuxf3digo}}
 
 Los bloques de código empiezan con tres o más tildes; y acaban por lo
 menos con el mismo número de tildes:
@@ -454,7 +487,8 @@ qsort (x:xs) = qsort (filter (< x) xs) ++ [x] ++
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \end{verbatim}
 
-\subsection{Lineas horizontales}\label{lineas-horizontales}
+\hypertarget{lineas-horizontales}{%
+\subsection{Lineas horizontales}\label{lineas-horizontales}}
 
 3 o mas guiones o asteriscos en una linea (se permiten espacios
 intercalados)
@@ -465,7 +499,8 @@ intercalados)
 - - - -
 \end{verbatim}
 
-\subsection{Bloques verbatim}\label{bloques-verbatim}
+\hypertarget{bloques-verbatim}{%
+\subsection{Bloques verbatim}\label{bloques-verbatim}}
 
 Todo el texto identado cuatro espacios
 
@@ -474,8 +509,30 @@ Ejemplo Esto es un bloque verbatim y por ejemplo *esto* aparece
 tal cual y no en itálica.
 \end{verbatim}
 
+\hypertarget{notas-a-pie-de-puxe1gina}{%
+\subsection{Notas a pie de página}\label{notas-a-pie-de-puxe1gina}}
+
+\begin{verbatim}
+Referencia[^1], y una nota[^larga]
+
+[^1]: Cobbled together from
+    <http://daringfireball.net/projects/markdown/syntax> and
+    <http://johnmacfarlane.net/pandoc/README.html>.
+    
+[^larga] Una nota que tiene.
+
+    Varias lineas
+    
+        {incluso código}
+    
+    Mas lineas
+    
+Esto ya no es de la nota larga
+\end{verbatim}
+
+\hypertarget{en-que-me-he-basado-o-copiado-si-lo-prefieres}{%
 \section{En que me he basado (o copiado si lo
-prefieres)}\label{en-que-me-he-basado-o-copiado-si-lo-prefieres}
+prefieres)}\label{en-que-me-he-basado-o-copiado-si-lo-prefieres}}
 
 \begin{itemize}
 \tightlist

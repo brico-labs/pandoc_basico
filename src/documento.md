@@ -336,12 +336,25 @@ Todo el texto identado cuatro espacios
     Ejemplo Esto es un bloque verbatim y por ejemplo *esto* aparece
     tal cual y no en itálica.
 
+## Notas a pie de página
+
+~~~~
+Referencia[^1], y una nota[^larga]
+
 [^1]: Cobbled together from
     <http://daringfireball.net/projects/markdown/syntax> and
     <http://johnmacfarlane.net/pandoc/README.html>.
+    
+[^larga] Una nota que tiene.
 
-  [`http://daringfireball.net/projects/markdown/syntax`{.url}]: http://daringfireball.net/projects/markdown/syntax
-  [`http://johnmacfarlane.net/pandoc/README.html`{.url}]: http://johnmacfarlane.net/pandoc/README.html
+    Varias lineas
+    
+        {incluso código}
+    
+    Mas lineas
+    
+Esto ya no es de la nota larga
+~~~~
 
 # En que me he basado (o copiado si lo prefieres)
 
