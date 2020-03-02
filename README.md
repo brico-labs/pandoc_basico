@@ -74,6 +74,8 @@ con un simple comando.
   - git (no es imprescindible pero muy recomendable)
   - Las plantillas de Pandoc (o *templates*)
   - Un buen editor de texto
+  - *LaTeX* para la salida a *pdf* El proceso de instalar *LaTeX*
+    dependerá de tu sistema.
 
 ## Instalación de Pandoc
 
@@ -95,8 +97,8 @@ cd .pandoc
 git clone https://github.com/jgm/pandoc-templates templates
 ```
 
-Esto dejará las plantillas en el directorio *~/.pandoc/templates* que es
-uno de los directorios donde Pandoc busca las plantillas.
+Esto dejará las plantillas en el directorio *\~/.pandoc/templates* que
+es uno de los directorios donde Pandoc busca las plantillas.
 
 No hay inconveniente en dejar las plantillas en otro directorio, o
 incluso en el arbol de nuestro proyecto, pero habría que retocar el

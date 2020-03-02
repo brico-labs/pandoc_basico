@@ -89,6 +89,8 @@ etc) con un simple comando.
 * git (no es imprescindible pero muy recomendable)
 * Las plantillas de Pandoc (o *templates*)
 * Un buen editor de texto
+* _LaTeX_ para la salida a _pdf_ El proceso de instalar _LaTeX_
+  dependerá de tu sistema.
 
 ## Instalación de Pandoc
 

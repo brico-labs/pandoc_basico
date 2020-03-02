@@ -21,10 +21,10 @@ pdf_opt := --from markdown --standalone --variable geometry:a4paper --variable l
 ## Recipes for targets
 
 # These targets are not files
-.PHONY: clean pdf latex mediawiki epub github
+.PHONY: clean pdf latex mediawiki dokuwiki epub github
 
 # all -- This target try to build every thing
-all: pdf latex mediawiki epub github docx
+all: pdf latex mediawiki dokuwiki epub github docx
 
 # reset -- This target deletes every target and then tries to build everithing
 reset: clean all
@@ -50,6 +50,13 @@ mediawiki: $(output)/$(target).mw $(sources)
 $(output)/$(target).mw: $(sources)
 	pandoc --from markdown --to mediawiki \
 	--output=$(output)/$(target).mw \
+	$(sources)
+
+# dokuwiki  -- buid dokuwiki file into output directory
+dokuwiki: $(output)/$(target).dw $(sources)
+$(output)/$(target).dw: $(sources)
+	pandoc --from markdown --to dokuwiki \
+	--output=$(output)/$(target).dw \
 	$(sources)
 
 #epub  -- buid epub file into output directory
@@ -84,6 +91,7 @@ clean:
 	rm -f $(output)/*.pdf
 	rm -f $(output)/*.tex
 	rm -f $(output)/*.mw
+	rm -f $(output)/*.dw
 	rm -f $(output)/*.odt
 	rm -f $(output)/*.docx
 	rm -r README.md

@@ -51,6 +51,7 @@ Lo que nos permite Pandoc a la hora de documentar un proyecto es mantener la doc
 * git (no es imprescindible pero muy recomendable)
 * Las plantillas de Pandoc (o ''templates'')
 * Un buen editor de texto
+* ''LaTeX'' para la salida a ''pdf'' El proceso de instalar ''LaTeX'' dependerá de tu sistema.
 
 == Instalación de Pandoc ==
 
